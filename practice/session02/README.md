@@ -2,6 +2,23 @@
 
 ## Contar películas por categoría
 Crea un procedimiento que reciba el nombre de una categoría (IN) y devuelva la cantidad de películas (OUT).
+```
+CREATE OR REPLACE PROCEDURE (
+    category IN text
+    amount OUT int
+)
+LANGUAGE plpgsql AS $$
+BEGIN
+  select c."name" , count(*), AVG(f.length)
+from film f
+inner join film_category fc  on f.film_id = fc.film_id
+inner join category c on fc.category_id = c.category_id 
+where c.name = category
+group by c.category_id
+END;
+$$;
+
+```
 
 ## Listar películas por actor
 Crea un SP que reciba el actor_id y muestre los títulos de las películas donde participó (usando RAISE NOTICE o PERFORM).
