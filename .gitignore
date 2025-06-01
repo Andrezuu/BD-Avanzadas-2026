@@ -24,3 +24,5 @@ Thumbs.db
 # Archivos de editor
 .vscode/
 .idea/
+
+node_modules/
